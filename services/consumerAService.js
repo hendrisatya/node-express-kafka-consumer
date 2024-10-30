@@ -6,7 +6,10 @@ const runConsumerA = async () => {
   await consumerA.connect();
   console.log("Consumer A connected");
 
-  await consumerA.subscribe({ topic: "topicA", fromBeginning: true });
+  await consumerA.subscribe({
+    topic: process.env.KAFKA_TOPIC_A,
+    fromBeginning: true,
+  });
 
   await consumerA.run({
     eachMessage: async ({ topic, partition, message }) => {
